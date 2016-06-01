@@ -3,11 +3,13 @@ package com.zzy.entity;
 public class User {
     private Integer id;
 
-    private String userName;
+    private String name;
 
     private String password;
 
-    private Integer age;
+    private String nickname;
+
+    private Integer gender;
 
     public Integer getId() {
         return id;
@@ -17,12 +19,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getName() {
+        return name;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public String getPassword() {
@@ -33,11 +35,19 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    public Integer getAge() {
-        return age;
+    public String getNickname() {
+        return nickname;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
+    }
+
+    public Integer getGender() {
+        return gender;
+    }
+
+    public void setGender(Integer gender) {
+        this.gender = gender;
     }
 }

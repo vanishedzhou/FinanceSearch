@@ -2,10 +2,10 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.zzy</groupId>
-  <artifactId>ssmTest</artifactId>
+  <artifactId>sercretgarden_ng</artifactId>
   <packaging>war</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>ssmTest Maven Webapp</name>
+  <name>sercretgarden_ng Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
   <properties>
@@ -168,6 +168,17 @@
 	</dependencies>
   
   <build>
-    <finalName>ssmTest</finalName>
+    <finalName>sercretgarden_ng</finalName>
+    <plugins>
+	    <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <version>3.2</version>
+	        <configuration>
+	            <source>1.7</source>
+	            <target>1.7</target>
+	        </configuration>
+	    </plugin>
+	</plugins>
   </build>
 </project>

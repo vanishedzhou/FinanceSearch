@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.zzy.dao.UserMapper;
+import com.zzy.dao.UserDao;
 import com.zzy.entity.User;
 import com.zzy.service.UserService;
 
@@ -13,7 +13,7 @@ import com.zzy.service.UserService;
 public class UserServiceImpl implements UserService{
 	
 	@Resource
-	private UserMapper userDao;
+	private UserDao userDao;
 
 	@Override
 	public User selectUserById(int id) {
