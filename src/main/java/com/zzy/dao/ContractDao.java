@@ -3,7 +3,9 @@ package com.zzy.dao;
 import java.util.List;
 
 import com.zzy.entity.Contract;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ContractDao {
     int deleteByPrimaryKey(Integer id);
 
@@ -20,6 +22,8 @@ public interface ContractDao {
     int updateByPrimaryKey(Contract record);
     
     int selectMaxId();
+
+    int test();
     
     List<Contract> selectAll();
 }

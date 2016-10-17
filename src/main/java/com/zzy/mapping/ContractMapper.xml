@@ -93,9 +93,12 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectMaxId" resultType="java.lang.Integer">
-  	select max(id) from contract;
+  	select max(id) from contract
   </select>
   <select id="selectAll" resultType="com.zzy.entity.Contract">
-  	select * from contract;
+  	select * from contract
+  </select>
+  <select id="test" resultType="java.lang.Integer">
+    SELECT count(*) FROM contract;
   </select>
 </mapper>
