@@ -27,4 +27,29 @@ public class TestController {
 
         return testEntity;
     }
+
+    public static void main(String[] args) {
+        A a;
+        a = new A();
+        a.display();
+        a = new B();
+        a.display();
+    }
 }
+
+class A {
+    public int a;
+
+    public void display() {
+        System.out.println("aaa...");
+    }
+}
+
+class B extends A {
+    public int b;
+
+    public void display() {
+        System.out.println("bbb...");
+    }
+}
+
