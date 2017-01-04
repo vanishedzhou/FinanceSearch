@@ -18,10 +18,10 @@
 
 <h1>金融期货搜索</h1>
 
-<form>
-    <input type="text" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
+<form:form commandName="searchResult" action="search" method="post">
+    <form:input path="queryString"/>
     <input type="submit"  value="搜索"/>
-</form>
+</form:form>
 <%--<div class="search">--%>
     <%--<div class="s-bar">--%>
         <%--<form>--%>
@@ -35,7 +35,7 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/script.js"></script>
 <div style="text-align:center;clear:both">
-    <p align="left"><mark>金融期货</mark>搜索是专注于搜索金融期货资讯，实习分析期货<mark>热点</mark>问题的<mark>垂直搜索</mark>引擎</p>
+    <p align="left"><mark>金融期货</mark>搜索是专注于搜索金融期货资讯，实时分析期货<mark>热点</mark>问题的<mark>垂直搜索</mark>引擎</p>
 </div>
 
 </body>

@@ -1,5 +1,6 @@
 package com.zzy.service.impl;
 
+import com.zzy.entity.SearchResult;
 import com.zzy.service.ElasticSearchService;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.transport.TransportClient;
@@ -11,15 +12,19 @@ import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.highlight.HighlightField;
+import org.springframework.stereotype.Service;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zhouzhiyong on 2016/12/28.
  */
+@Service
 public class ElasticSearchServiceImpl implements ElasticSearchService{
     public static TransportClient client = null;
     static {
@@ -78,6 +83,33 @@ public class ElasticSearchServiceImpl implements ElasticSearchService{
         }
     }
 
+
+    @Override
+    public List<SearchResult> search(String queryString) {
+        String indices = "news";
+        String field = "title";
+        List<SearchResult> searchResults = new ArrayList<>();
+        SearchResponse searchResponse = client.prepareSearch(indices)
+                .addHighlightedField(field)
+                .setQuery(QueryBuilders.disMaxQuery().add(QueryBuilders.matchQuery(field,queryString)))
+                .setHighlighterPreTags("<mark>")
+                .setHighlighterPostTags("</mark>")
+                .setSize(10)
+                .execute().actionGet();
+
+        for(SearchHit hit : searchResponse.getHits().getHits()) {
+            SearchResult searchResult = new SearchResult();
+            searchResult.setId(hit.getId());
+            searchResult.setTitle(hit.getSource().get("title").toString());
+            searchResult.setAbstractContent(hit.getSource().get("content").toString().substring(0,50));
+            searchResult.setDate(hit.getSource().get("date").toString());
+            searchResult.setUrl(hit.getSource().get("url").toString());
+
+            searchResults.add(searchResult);
+        }
+
+        return searchResults;
+    }
 
     @Override
     public void tasteIt() {
