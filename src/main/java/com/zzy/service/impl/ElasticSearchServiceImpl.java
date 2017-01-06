@@ -99,6 +99,7 @@ public class ElasticSearchServiceImpl implements ElasticSearchService{
 
         for(SearchHit hit : searchResponse.getHits().getHits()) {
             SearchResult searchResult = new SearchResult();
+            searchResult.setScore(hit.getScore());
             searchResult.setId(hit.getId());
             searchResult.setTitle(hit.getSource().get("title").toString());
             searchResult.setAbstractContent(hit.getSource().get("content").toString().substring(0,50));

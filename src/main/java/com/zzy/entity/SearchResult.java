@@ -6,12 +6,21 @@ package com.zzy.entity;
 public class SearchResult {
     private String queryString;
 
+    private double score;
     private String id;
     private String url;
     private String title;
     private String abstractContent;
     private String date;
     private String infoSource;
+
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
 
     public String getQueryString() {
         return queryString;

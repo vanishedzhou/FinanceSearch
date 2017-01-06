@@ -28,6 +28,8 @@
         <tr>
             <td>${searchResult.id}</td>
             <br/>
+            <td>score: ${searchResult.score}</td>
+            <br/>
             <td><a href="${searchResult.url}">${searchResult.title}</a></td>
             <br/>
             <td>${searchResult.abstractContent}</td>
