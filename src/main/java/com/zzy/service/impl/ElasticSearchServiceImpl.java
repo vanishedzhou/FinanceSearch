@@ -86,10 +86,11 @@ public class ElasticSearchServiceImpl implements ElasticSearchService{
 
     @Override
     public List<SearchResult> search(String queryString) {
-        String indices = "news";
+        String indicesNews = "news";
+        String indicesDisclosure = "disclosure";
         String field = "title";
         List<SearchResult> searchResults = new ArrayList<>();
-        SearchResponse searchResponse = client.prepareSearch(indices)
+        SearchResponse searchResponse = client.prepareSearch(indicesNews,indicesDisclosure)
                 .addHighlightedField(field)
                 .setQuery(QueryBuilders.disMaxQuery().add(QueryBuilders.matchQuery(field,queryString)))
                 .setHighlighterPreTags("<mark>")
@@ -98,13 +99,19 @@ public class ElasticSearchServiceImpl implements ElasticSearchService{
                 .execute().actionGet();
 
         for(SearchHit hit : searchResponse.getHits().getHits()) {
+            HighlightField highlightedField = hit.getHighlightFields().get(field);
+            String strHighlightedField = highlightedField.getFragments()[0].string();
+//            System.out.println(highlightedField.getFragments()[0].string());
+
             SearchResult searchResult = new SearchResult();
             searchResult.setScore(hit.getScore());
             searchResult.setId(hit.getId());
             searchResult.setTitle(hit.getSource().get("title").toString());
+            searchResult.setTitle(strHighlightedField);
             searchResult.setAbstractContent(hit.getSource().get("content").toString().substring(0,50));
             searchResult.setDate(hit.getSource().get("date").toString());
             searchResult.setUrl(hit.getSource().get("url").toString());
+            searchResult.setAssortment(hit.getIndex());
 
             searchResults.add(searchResult);
         }

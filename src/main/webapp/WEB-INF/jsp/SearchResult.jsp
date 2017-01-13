@@ -22,22 +22,17 @@
 <div id="global" >
     <h4>搜索结果</h4>
     <br/>
-    <br/>
-    <br/>
     <c:forEach items="${searchResults}" var="searchResult">
         <tr>
-            <td>${searchResult.id}</td>
-            <br/>
-            <td>score: ${searchResult.score}</td>
-            <br/>
             <td><a href="${searchResult.url}">${searchResult.title}</a></td>
             <br/>
             <td>${searchResult.abstractContent}</td>
             <br/>
-            <td>${searchResult.date}</td>
+            <td>assortment: ${searchResult.assortment}&nbsp;&nbsp;&nbsp; ${searchResult.date}</td>
             <br/>
+            <td>id: ${searchResult.id}</td>
             <br/>
-            <br/>
+            <td>score: ${searchResult.score}</td>
             <br/>
             <br/>
         </tr>

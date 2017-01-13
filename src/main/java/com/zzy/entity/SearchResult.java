@@ -14,6 +14,16 @@ public class SearchResult {
     private String date;
     private String infoSource;
 
+    private String assortment;
+
+    public String getAssortment() {
+        return assortment;
+    }
+
+    public void setAssortment(String assortment) {
+        this.assortment = assortment;
+    }
+
     public double getScore() {
         return score;
     }
