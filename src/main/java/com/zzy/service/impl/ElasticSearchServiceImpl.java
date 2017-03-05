@@ -95,7 +95,7 @@ public class ElasticSearchServiceImpl implements ElasticSearchService{
                 .setQuery(QueryBuilders.disMaxQuery().add(QueryBuilders.matchQuery(field,queryString)))
                 .setHighlighterPreTags("<mark>")
                 .setHighlighterPostTags("</mark>")
-                .setSize(10)
+                .setSize(50)
                 .execute().actionGet();
 
         for(SearchHit hit : searchResponse.getHits().getHits()) {
@@ -108,7 +108,9 @@ public class ElasticSearchServiceImpl implements ElasticSearchService{
             searchResult.setId(hit.getId());
             searchResult.setTitle(hit.getSource().get("title").toString());
             searchResult.setTitle(strHighlightedField);
-            searchResult.setAbstractContent(hit.getSource().get("content").toString().substring(0,50));
+            String content = hit.getSource().get("content").toString();
+            content = content.length()>100 ? content.substring(0,100) : content;
+            searchResult.setAbstractContent(content);
             searchResult.setDate(hit.getSource().get("date").toString());
             searchResult.setUrl(hit.getSource().get("url").toString());
             searchResult.setAssortment(hit.getIndex());
